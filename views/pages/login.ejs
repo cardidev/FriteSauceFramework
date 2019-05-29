@@ -1,0 +1,31 @@
+<%- include('../partials/header.ejs') -%>
+<%- include("../partials/navbar.ejs") -%>
+
+<!-- Login Form -->
+<div class="container form-center">
+  <form action="/login" method="post">
+    <div class="row justify-content-center rm-spacing">
+      <div class="col-md-8">
+        <div class="form-group">
+          <label for="Email">Nom d'utilisateur</label>
+          <input type="text" name='email' class="form-control" id="Email" placeholder="Entre ton nom d'utilisateur!">
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center rm-spacing">
+      <div class="col-md-8">
+        <div class="form-group">
+          <label for="Password">Mot de passe</label>
+          <input type="password" name='pwd' class="form-control" id="Password" placeholder="As tu ton mot de passe ?">
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center spacer-top rm-spacing">
+      <div class="col-md-8">
+        <button class="btn btn-primary" type="submit">Ouvrir une session!</button>
+        <a href="/newuser" class="spacer-left btn btn-primary">M'inscrire!</a>
+      </div>
+    </div>
+  </form>
+</div>
+<%- include('../partials/footer.ejs') -%>

@@ -1,0 +1,60 @@
+<%- include('../partials/header.ejs') -%>
+<%- include("../partials/navbar.ejs") -%>
+
+<div class="container form-center">
+  <form action="/usercreate" method="post">
+    <div class="form-row justify-content-center">
+      <div class="col-sm-10 col-lg-8">
+        <div class="form-group">
+          <label for="firstName">Nom d'utilisateur</label>
+          <input type="text" class="form-control" name="firstName" id="firstName"
+            placeholder="J'ai deja pris fritelover!">
+        </div>
+      </div>
+    </div>
+    <div class="form-row justify-content-center">
+      <div class="col-sm-10 col-lg-8 ">
+        <div class="form-group">
+          <label for="email">Adresse courriel</label>
+          <input type="email" name="email" id="email" placeholder="Ton adresse courriel!" class="form-control">
+        </div>
+      </div>
+      <div class="col-sm-10 col-lg-8">
+        <div class="form-group">
+          <label for="emailConfirm">Confirme ton adresse courriel</label>
+          <input type="email" name="email" id="emailConfirm" placeholder="On veux juste faire sur!"
+            class="form-control">
+        </div>
+      </div>
+    </div>
+    <div class="form-row justify-content-center">
+      <div class="col-lg-4 col-sm-5">
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input type="password" name="passwordLogin" class="mb-lg-4 form-control" id="password"
+            placeholder="Choisis ton mot de passe!">
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-5">
+        <label for="passwordConfirm">Confirme ton mot de passe!</label>
+        <input type="password" name="pwdConfirm" id="passwordConfirm" class="form-control"
+          placeholder="On veux juste faire sur!">
+      </div>
+    </div>
+    <div class="form-row justify-content-center">
+      <div class="col-sm-4 mt-2">
+        <button type="submit" class="btn btn-primary">M'inscrire</button>
+      </div>
+      <div class="col-sm-4 mt-sm-2 d-sm-block d-none">
+        <a href="/login" class="btn btn-primary">Retour a la page de connexion</a>
+      </div>
+    </div>
+    <div class="form-row mt-2">
+      <div class="col-sm-4 d-sm-none">
+        <a href="/login" class="btn btn-primary">Retour a la page de connexion</a>
+      </div>
+    </div>
+  </form>
+</div>
+
+<%- include('../partials/footer') %>

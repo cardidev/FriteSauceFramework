@@ -1,0 +1,106 @@
+/* FONT:
+  font-family: 'Lato', sans-serif;
+  font-family: 'Arvo', serif;; 
+*/
+
+/* FA Ico:
+  Logo:
+  <i class="fas fa-hamburger"></i>
+  Navbar Social:
+  <i class="fab fa-facebook"></i>
+  <i class="fas fa-phone"></i>
+  <i class="fas fa-map-marker-alt"></i>
+*/
+/* Palette: 
+MENUBAR : #DC3545
+DARK: #374F75
+BLUE: #009EAC
+YELLOW: #D9A21B
+
+*/
+/* Main Selector */
+body {
+  background-image: url("../img/pattern.svg");
+  font-family: 'Lato', sans-serif;
+  font-weight: 400
+}
+h1, h5{
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: #D9A21B;
+}
+
+/* Main utils */
+
+.logo{
+  font-family: 'Arvo', serif;
+  font-size: 1.25rem;
+  color: white;
+  font-weight: 900;
+  text-transform: capitalize;
+}
+.container-main {
+  margin-top: 5vh;
+  color: #374F75;
+  background-color: rgba(187, 177, 240, 0.95);
+  padding: 5vh 3vh;
+  font-size: 1em
+}
+.form-center {
+  padding: 1vh;
+  margin-top: 25vh;
+  color: #374F75;
+  background-color: rgba(187, 177, 240, 0.95);
+}
+.contact-img{
+  width: 10%;
+}
+.rm-spacing{
+  padding: 0;
+  margin: 0;
+}
+/* Bootstrap default override */
+
+.bg-light {
+  background: #606c88;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #3f4c6b, #606c88);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.card{
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 1rem;
+  margin: 1rem 0;
+  align-items: center;
+}
+.card-img-top {
+  width: 25%;
+}
+.btn-primary{
+  background-color: #374F75;
+  border-color: #374F75
+}
+
+/* Spacing Utilities */
+.spacer-right{
+  margin-right: 1rem
+}
+.spacer-left{
+  margin-left: 1rem;
+}
+.spacer-bottom{
+  margin-bottom: 1.5rem
+}
+.spacer-top{
+  margin-top: 0.5rem
+}
+
+/* Icon Formatting */
+.icon-bottom {
+  font-size: 3vh;
+}
+.fa-utensils {
+  margin-right: 0.5em
+}
