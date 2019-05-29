@@ -2,7 +2,7 @@
 FriteSauce Framework est un système open source crée au Québec pour les entrepreneurs en restaurations et les enthousiastes de la restauration! Pour le moment, il s'agit seulement d'un template Bootstrap pour crée des pages statiques. À terme, le but du projet sera de fournir des fonctions dynamiques au utilisateur du projet. Voici les technologies utilisées pour le moment :
 
 - [NodeJS]
-- [MongoDB]
+- [MongoDB] via [Mongoose]
 - [Express Framework]
 - [EJS]
 - [Bootstrap]
@@ -38,8 +38,6 @@ $ npm install
 
 Vous voulez contribuer n'hésiter pas a "forker" votre propre version!
 
-systeme
-
 License
 ----
 
@@ -51,3 +49,4 @@ MIT
    [NodeJS]: <http://nodejs.org>
    [Bootstrap]: <http://twitter.github.com/bootstrap/>
    [Express Framework]: <http://expressjs.com>
+   [Mongoose]: <https://mongoosejs.com/>
