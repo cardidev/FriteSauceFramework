@@ -2,7 +2,7 @@
 const
 	express = require("express"),
 	app = express(),
-	bodyParser = require('body-parser'),
+	bodyParser = require('body-parser');
 //Config////////////////////////////////////////////////////////////////////////
 app.use(express.static("public"));
 app.set('view engine', 'ejs')
