@@ -60,7 +60,9 @@ app.get("/", (req, res) => {
 app.get("/login", (req,res) => {
 	res.render('pages/login.ejs');
 });
-//New User
+
+
+//SUBSCRIBE/////////////////////////////////////
 app.get("/register", (req,res) => {
 	res.render('pages/register.ejs');
 
@@ -86,21 +88,21 @@ app.post('/register', (req,res) => {
 	//redirect vers le portail admin ou client
 	res.render("pages/portail.ejs")
 });
-//POST Route pour utilisateur qui s'enregis
+//POST Route pour utilisateur qui s'enregistre
 app.post("/login", (req,res) => {
 	//
 
 	//Error check
 
 	//redirect
-	res.redirect('/user');
+	res.render('pages/portail.ejs');
 });
 
 //Logged In///////////////////////////////////////////
 
 //USERPANEL
-app.get('/user', (req,res) => {
-	res.render('pages/user.ejs');
+app.get('/portail', (req,res) => {
+	res.render('pages/portail.ejs');
 });
 
 //ORDER///////////////////////////////////////////////
