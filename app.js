@@ -11,10 +11,14 @@ const
 //EXPRESS/////////////////////////////////////////////
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+	extended: true
+}));
 
 //MONGOOSE////////////////////////////////////////////
-mongoose.connect('mongodb://localhost/FriteSauce', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost/FriteSauce', {
+	useNewUrlParser: true
+});
 const db = mongoose.connection;
 
 ////Error Checking on connection
@@ -46,7 +50,7 @@ const productSchema = new mongoose.Schema({
 ////Mongoose Compile Model pour userSchema
 const User = mongoose.model('User', userSchema);
 ////Mongoose Compile Model pour productSchema
-const Product =  mongoose.model('Product', productSchema);
+const Product = mongoose.model('Product', productSchema);
 
 
 //Route////////////////////////////////////////////////////////////////////////
@@ -56,31 +60,28 @@ app.get("/", (req, res) => {
 	res.render("pages/index.ejs");
 });
 
-//LOGIN//////////////////////////////////////////////
-app.get("/login", (req,res) => {
-	res.render('pages/login.ejs');
-});
-
-
 //SUBSCRIBE/////////////////////////////////////
-app.get("/register", (req,res) => {
+app.get("/register", (req, res) => {
 	res.render('pages/register.ejs');
 
 });
-app.post('/register', (req,res) => {
+app.post('/register', (req, res) => {
 	//Recois data de l'usager qui s'inscris
-	let username = req.body.username;
-	let password = req.body.password;
-	
+	const username = req.body.username;
+	const password = req.body.password;
+
 	//Joint le schema a la let user
-	let newUser = new User({username: username, password: password});
-	
+	const newUser = new User({
+		username: username,
+		password: password
+	});
+	//Verifie si user existe dans la db avant de sauvegarder
+
 	//Save user a la db
-	newUser.save( (err, user) => {
-		if(!err){
+	newUser.save((err, user) => {
+		if (!err) {
 			console.log(user);
-		}
-		else{
+		} else {
 			console.log(err);
 		}
 	});
@@ -88,27 +89,48 @@ app.post('/register', (req,res) => {
 	//redirect vers le portail admin ou client
 	res.render("pages/portail.ejs")
 });
-//POST Route pour utilisateur qui s'enregistre
-app.post("/login", (req,res) => {
-	//
 
-	//Error check
+//LOGIN//////////////////////////////////////////////
+app.get("/login", (req, res) => {
+	res.render('pages/login.ejs');
+});
 
-	//redirect
-	res.render('pages/portail.ejs');
+//POST Route pour utilisateur qui essaie de login
+app.post("/login", (req, res) => {
+
+	const username = req.body.username
+	const password = req.body.password
+	//verifier dans dbs
+	User.findOne({
+		username: username
+	}, (err, docs) => {
+		if (!err) {
+			if (docs.password === password) {
+				//Rendre la page portail
+				res.render('pages/portail.ejs');
+			}
+			else{
+				res.redirect("/login");
+			}
+		} else {
+			console.log(err)
+		}
+	})
 });
 
 //Logged In///////////////////////////////////////////
 
 //USERPANEL
-app.get('/portail', (req,res) => {
+app.get('/portail', (req, res) => {
 	res.render('pages/portail.ejs');
 });
 
 //ORDER///////////////////////////////////////////////
-app.get("/order", (req,res) => {
+app.get("/order", (req, res) => {
 	res.render('pages/order.ejs');
 });
 
 //Listener///////////////////////////////////////////////////////////////////////
-app.listen((process.env.IP, process.env.PORT || 3000), err =>{console.log(err);});
+app.listen((process.env.IP, process.env.PORT || 3000), err => {
+	console.log(err);
+});
