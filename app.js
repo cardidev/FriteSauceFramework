@@ -1,4 +1,4 @@
-//INIT//////////////////////////////////////////////////////////////////////////
+// INIT///////////////////////////////////////////////////////////////////////
 
 const
 	express = require("express"),
@@ -61,34 +61,34 @@ app.get("/login", (req,res) => {
 	res.render('pages/login.ejs');
 });
 //New User
-app.get("/newuser", (req,res) => {
-	res.render('pages/subscribe.ejs');
+app.get("/register", (req,res) => {
+	res.render('pages/register.ejs');
 
 });
-app.post('/usercreate', (req,res) => {
+app.post('/register', (req,res) => {
 	//Recois data de l'usager qui s'inscris
 	let username = req.body.username;
 	let password = req.body.password;
 	
 	//Joint le schema a la let user
-	let user = new User({username: username, password: password});
+	let newUser = new User({username: username, password: password});
 	
 	//Save user a la db
-	user.save( (err, user) => {
+	newUser.save( (err, user) => {
 		if(!err){
 			console.log(user);
 		}
 		else{
 			console.log(err);
 		}
-	})
-	
-	//redirect vers login
-	res.redirect("/login")
-})
+	});
+
+	//redirect vers le portail admin ou client
+	res.render("pages/portail.ejs")
+});
 //POST Route pour utilisateur qui s'enregis
 app.post("/login", (req,res) => {
-	//Post to db
+	//
 
 	//Error check
 
