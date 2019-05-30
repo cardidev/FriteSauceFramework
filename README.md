@@ -10,6 +10,7 @@ FriteSauce Framework est un système open source crée au Québec pour les entre
 # Fonctions actuelle
 
 - Template pour une page d'accueil, une page d'inscription et de connexion au futur portail
+- Base de donnee local pour les clients
 
 # Fonction Futur
 
