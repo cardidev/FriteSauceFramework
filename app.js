@@ -4,8 +4,8 @@ const
 	express = require("express"),
 	app = express(),
 	bodyParser = require('body-parser'),
-	mongoose = require('mongoose');
-
+	mongoose = require('mongoose'),
+	encrypt = require("mongoose-encryption");
 //Config////////////////////////////////////////////////////////////////////////
 
 //EXPRESS/////////////////////////////////////////////
@@ -14,6 +14,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
+app.use(express.json());
 
 //MONGOOSE////////////////////////////////////////////
 mongoose.connect('mongodb://localhost/FriteSauce', {
@@ -46,6 +47,13 @@ const productSchema = new mongoose.Schema({
 	img: String,
 	price: Number
 });
+////Encryption//////////////////////////////////////////////////////////////////////////////////////////
+const secret = "TestFriteSauce"; //DOIT ETRE CHANGE SI DEPLOYER DANS UN ENVIRONEMENT DE PRODUCTION!!////////////////////////////////////////////////////////////////////////////
+userSchema.plugin(encrypt, {
+	secret: secret,
+	encryptedFields: ['password', 'email']
+});
+
 
 ////Mongoose Compile Model pour userSchema
 const User = mongoose.model('User', userSchema);
@@ -60,27 +68,30 @@ app.get("/", (req, res) => {
 	res.render("pages/index.ejs");
 });
 
-//SUBSCRIBE/////////////////////////////////////
+//REGISTER/////////////////////////////////////
 app.get("/register", (req, res) => {
 	res.render('pages/register.ejs');
 
 });
+
 app.post('/register', (req, res) => {
 	//Recois data de l'usager qui s'inscris
 	const username = req.body.username;
 	const password = req.body.password;
-
+	const email = req.body.email;
+	
 	//Joint le schema a la let user
 	const newUser = new User({
 		username: username,
-		password: password
+		password: password,
+		email: email
 	});
-	//Verifie si user existe dans la db avant de sauvegarder
 
 	//Save user a la db
 	newUser.save((err, user) => {
 		if (!err) {
-			console.log(user);
+			console.log(user)
+
 		} else {
 			console.log(err);
 		}
@@ -100,6 +111,7 @@ app.post("/login", (req, res) => {
 
 	const username = req.body.username
 	const password = req.body.password
+
 	//verifier dans dbs
 	User.findOne({
 		username: username
@@ -108,8 +120,7 @@ app.post("/login", (req, res) => {
 			if (docs.password === password) {
 				//Rendre la page portail
 				res.render('pages/portail.ejs');
-			}
-			else{
+			} else {
 				res.redirect("/login");
 			}
 		} else {
