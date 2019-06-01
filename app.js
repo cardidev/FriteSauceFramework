@@ -47,6 +47,8 @@ const productSchema = new mongoose.Schema({
 	img: String,
 	price: Number
 });
+
+
 ////Encryption//////////////////////////////////////////////////////////////////////////////////////////
 const secret = "TestFriteSauce"; //DOIT ETRE CHANGE SI DEPLOYER DANS UN ENVIRONEMENT DE PRODUCTION!!////////////////////////////////////////////////////////////////////////////
 userSchema.plugin(encrypt, {
@@ -60,6 +62,23 @@ const User = mongoose.model('User', userSchema);
 ////Mongoose Compile Model pour productSchema
 const Product = mongoose.model('Product', productSchema);
 
+//Initialization des donner (Ajoute d'un utilisateur test)//
+//!!Retirez le test dans un env de production!!// 
+
+// const newUser = new User({
+// 	username: 'test',
+// 	password: 'test',
+// 	email: 'test@test.ca'
+// });
+
+// newUser.save((err,user) => {
+// 	if(!err){
+// 		console.log("Utilisateur ajoute : " + user)
+// 	}
+// 	else{
+// 		console.log('Erreur : ' +  err)
+// 	}
+// })
 
 //Route////////////////////////////////////////////////////////////////////////
 
